@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{pet.name}}</title>
+</head>
+<body>
+    {{pet.name}}
+    <br>
+    {{pet.species}}
+    <br>
+    {% if pet.photo_url %}
+    <img src="{{pet.photo_url}}" alt="" width="100">
+    {% endif %}
+    <br>
+    {% if pet.age %}
+    {{pet.age}}
+    {% endif %}
+    <form action="" id="pet-edit-form" method="POST">
+        {{form.hidden_tag()}}
+        {% for field in form if field.widget.input_type != 'hidden' %}
+        <p>
+            {{field.label}}
+            {{field}}
+            {% for error in field.errors %}
+                {{error}}  
+            {% endfor %}
+        </p>
+      {% endfor %}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
